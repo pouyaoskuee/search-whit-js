@@ -17,6 +17,20 @@
       "class": "watch",
       "price": 12000000,
       "image": "./assets/images/q.jpg"
+    },
+    {
+      "id": 2,
+      "title": "phone" ,
+      "class": "watch",
+      "price": 12000000,
+      "image": "./assets/images/q.jpg"
+    },
+    {
+      "id": 3,
+      "title": "airpods" ,
+      "class": "watch",
+      "price": 12000000,
+      "image": "./assets/images/q.jpg"
     }
 
   ]

@@ -1,14 +1,16 @@
 // http://localhost:3000/
+// npx json-server db.json
 
 let allproducts = []
+let filter_arry=[]
+let category_arry = []
 const filter = {
     searchitem: ''
 }
-let filter_arry=[]
 
 const search = document.getElementById('search')
 const display = document.querySelector('.products__container')
-// const search_btn = document.getElementById('search-btn')
+const category_btns = document.querySelectorAll('.filter__btn')
 
 
 
@@ -23,16 +25,18 @@ class PRODUCTS{
             allproducts = res.data
         })
             .catch(err => console.log(err));
-        console.log(allproducts)
     }
     filterProducts(_products , _filter) {
         filter_arry = _products.filter((item) => {
             return item.title.toLowerCase().includes(_filter.searchitem.toLowerCase());
         });
-        console.log(filter_arry);
     }
 
-
+    categoryProducts(_products , category) {
+        category_arry = _products.filter((item) => {
+            return item.class.toLowerCase().includes(category.toLowerCase());
+        })
+    }
 }
 
 
@@ -42,13 +46,13 @@ class UI{
         let result = ''
         product.forEach((item) => {
             result += `<div class="products__item">
-            <img src="assets/images/q.jpg" alt="">
+            <img src="${item.image}" alt="">
             <div class="products__info">
                 <p class="product__name">
-                    iphone 13 promax
+                    ${item.title}
                 </p>
                 <p class="product__price">
-                    120000000
+                    ${item.price}
                 </p>
             </div>
         </div>`
@@ -57,11 +61,9 @@ class UI{
         display.innerHTML = result;
     }
 
-}
-
-class LOCALSTORAGE{
 
 }
+
 
 const getproduct = new PRODUCTS();
 const ui = new UI();
@@ -70,7 +72,6 @@ const ui = new UI();
 document.addEventListener('DOMContentLoaded',async ()=>{
     await getproduct.getProduct();
     ui.display_products(allproducts);
-
 })
 
 search.addEventListener('input', (e)=>{
@@ -80,12 +81,16 @@ search.addEventListener('input', (e)=>{
 
 })
 
+category_btns.forEach(category => {
+    category.addEventListener('click', (e)=>{
+        e.preventDefault()
+        data_category = e.target.dataset.category;
+        getproduct.categoryProducts(allproducts , data_category );
+        ui.display_products(category_arry);
 
-// search_btn.addEventListener('click', (e)=>{
-//     const getproduct = new PRODUCTS();
-//     getproduct.getProduct();
-//     getproduct.filterProducts(allproducts , filter);
-// })
+    })
+})
+
 
 
 

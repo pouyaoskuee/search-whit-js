@@ -53,6 +53,7 @@ h3{
     font-size: 2.5rem;
 }
 
+/*header*/
 
 .header{
     background-color: var(--color--primary);
@@ -94,6 +95,8 @@ h3{
     padding: 0.5rem;
     text-align: center;
 }
+
+/*body*/
 
 .products__container{
     display: grid;

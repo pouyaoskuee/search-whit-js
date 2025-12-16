@@ -40,7 +40,6 @@ class PRODUCTS{
 }
 
 
-
 class UI{
     display_products(product){
         let result = ''
